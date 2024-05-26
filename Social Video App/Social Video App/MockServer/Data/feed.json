@@ -1,0 +1,96 @@
+{
+    "status": "success",
+    "data": [
+        {
+            "postId": "post_1_id",
+            "videoUrl": "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4",
+            "thumbnail_url": "https://samplelib.com/lib/preview/png/sample-boat-400x300.png",
+            "username": "James",
+            "likes": 120
+        },
+        {
+            "postId": "post_2_id",
+            "videoUrl": "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ElephantsDream.mp4",
+            "thumbnail_url": "https://samplelib.com/lib/preview/png/sample-hut-400x300.png",
+            "username": "Sam",
+            "likes": 10
+        },
+        {
+            "postId": "post_3_id",
+            "videoUrl": "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4",
+            "thumbnail_url": "https://samplelib.com/lib/preview/png/sample-bumblebee-400x300.png",
+            "username": "Rahul",
+            "likes": 10023
+        },
+        {
+            "postId": "post_4_id",
+            "videoUrl": "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerEscapes.mp4",
+            "thumbnail_url": "https://samplelib.com/lib/preview/png/sample-clouds2-400x300.png",
+            "username": "Simran",
+            "likes": 0
+        },
+        {
+            "postId": "post_5_id",
+            "videoUrl": "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerFun.mp4",
+            "thumbnail_url": "https://commondatastorage.googleapis.com/codeskulptor-assets/lathrop/asteroid_blend.png",
+            "username": "James",
+            "likes": 43
+        },
+        {
+            "postId": "post_6_id",
+            "videoUrl": "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerJoyrides.mp4",
+            "thumbnail_url": "https://commondatastorage.googleapis.com/codeskulptor-assets/lathrop/nebula_blue.s2014.png",
+            "username": "Simran",
+            "likes": 86
+        },
+        {
+            "postId": "post_7_id",
+            "videoUrl": "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerMeltdowns.mp4",
+            "thumbnail_url": "https://codeskulptor-demos.commondatastorage.googleapis.com/GalaxyInvaders/back06.jpg",
+            "username": "Sam",
+            "likes": 111
+        },
+        {
+            "postId": "post_8_id",
+            "videoUrl": "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/Sintel.mp4",
+            "thumbnail_url": "https://codeskulptor-demos.commondatastorage.googleapis.com/GalaxyInvaders/back05.jpg",
+            "username": "Samuel",
+            "likes": 14
+        },
+        {
+            "postId": "post_9_id",
+            "videoUrl": "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/SubaruOutbackOnStreetAndDirt.mp4",
+            "thumbnail_url": "https://codeskulptor-demos.commondatastorage.googleapis.com/GalaxyInvaders/back01.jpg",
+            "username": "Arpit",
+            "likes": 123
+        },
+        {
+            "postId": "post_10_id",
+            "videoUrl": "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/TearsOfSteel.mp4",
+            "thumbnail_url": "https://codeskulptor-demos.commondatastorage.googleapis.com/GalaxyInvaders/back02.jpg",
+            "username": "Joey",
+            "likes": 23
+        },
+        {
+            "postId": "post_11_id",
+            "videoUrl": "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/VolkswagenGTIReview.mp4",
+            "thumbnail_url": "https://codeskulptor-demos.commondatastorage.googleapis.com/GalaxyInvaders/back03.jpg",
+            "username": "Catherine",
+            "likes": 44
+        },
+        {
+            "postId": "post_12_id",
+            "videoUrl": "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/WeAreGoingOnBullrun.mp4",
+            "thumbnail_url": "https://samplelib.com/lib/preview/png/sample-boat-400x300.png",
+            "username": "Mick",
+            "likes": 82
+        },
+        {
+            "postId": "post_13_id",
+            "videoUrl": "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/WhatCarCanYouGetForAGrand.mp4",
+            "thumbnail_url": "https://samplelib.com/lib/preview/png/sample-bumblebee-400x300.png",
+            "username": "Leonard",
+            "likes": 12
+        }
+    ]
+}

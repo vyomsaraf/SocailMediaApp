@@ -1,0 +1,21 @@
+{
+    "status": "success",
+    "data": {
+        "username": "Simran",
+        "profilePictureUrl": "https://codeskulptor-demos.commondatastorage.googleapis.com/GalaxyInvaders/back01.jpg",
+        "posts": [
+            {
+                "postId": "post_4_id",
+                "videoUrl": "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerEscapes.mp4",
+                "thumbnail_url": "https://samplelib.com/lib/preview/png/sample-clouds2-400x300.png",
+                "likes": 0
+            },
+            {
+                "postId": "post_6_id",
+                "videoUrl": "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerJoyrides.mp4",
+                "thumbnail_url": "https://commondatastorage.googleapis.com/codeskulptor-assets/lathrop/nebula_blue.s2014.png",
+                "likes": 86
+            }
+        ]
+    }
+}

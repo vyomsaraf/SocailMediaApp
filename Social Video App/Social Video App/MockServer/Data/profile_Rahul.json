@@ -1,0 +1,15 @@
+{
+    "status": "success",
+    "data": {
+        "username": "Rahul",
+        "profilePictureUrl": "https://codeskulptor-demos.commondatastorage.googleapis.com/GalaxyInvaders/back07.jpg",
+        "posts": [
+            {
+                "postId": "post_3_id",
+                "videoUrl": "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4",
+                "thumbnail_url": "https://samplelib.com/lib/preview/png/sample-bumblebee-400x300.png",
+                "likes": 10023
+            }
+        ]
+    }
+}
