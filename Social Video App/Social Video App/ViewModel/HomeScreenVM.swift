@@ -14,19 +14,18 @@ final class HomeScreenVM: ObservableObject {
     @Published var userProfile: UserProfilModel? = nil
     var username: String
     var originalData: [PostModel]? = nil
-    
-    @Published var serverStatus: Bool
+    private var apiTask: Task<Void, Never>?
     
     init(username: String) {
         self.username = username
-        serverStatus = MockServerClient.shared.isServerActive
         DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
             self.loadData()
         }
     }
     
     func loadData() {
-        Task {
+        apiTask?.cancel()
+        apiTask = Task {
             await loadFeedData()
             await loadUserProfile()
         }
@@ -67,7 +66,8 @@ final class HomeScreenVM: ObservableObject {
             }
             // delay added to show refresh
             DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
-                Task {
+                self.apiTask?.cancel()
+                self.apiTask = Task {
                     await self.loadFeedData()
                 }
             }

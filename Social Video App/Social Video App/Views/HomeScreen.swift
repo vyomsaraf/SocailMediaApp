@@ -20,10 +20,9 @@ struct HomeScreen: View {
         VStack(alignment: .leading, spacing: 16.0) {
             searchBar()
             if let posts = homeScreenVM.posts, !posts.isEmpty {
-                let modelConainer = getModelContainer()
                 VStack(alignment: .leading, spacing: 8.0) {
                     List(posts, id: \.id) { post in
-                        PostCardListItem(post: post, loggedInUsername: homeScreenVM.username, modelContinaer: modelConainer)
+                        PostCardListItem(post: post, loggedInUsername: homeScreenVM.username)
                         .listRowSeparator(.hidden)
                         .listRowBackground(Color.clear)
                         .listRowInsets(EdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 0) )
@@ -46,11 +45,10 @@ struct HomeScreen: View {
         .modifier(AppNavigationTitleBar(title: "Home"))
         .toolbar {
             ToolbarItem(placement: .topBarTrailing) {
-                NavigationLink(destination: ProfileView()
-                    .environmentObject(homeScreenVM), label: {
-                        AppImage(url: homeScreenVM.userProfile?.profileUrl, label: homeScreenVM.userProfile?.username ?? homeScreenVM.username, size: 45.0, labelFontSize: .footnote)
-                            .clipShape(Circle())
-                })
+                NavigationLink(value: NavigationModel(username: homeScreenVM.username, userProfile: homeScreenVM.userProfile, navigationItem: .profile)) {
+                    AppImage(url: homeScreenVM.userProfile?.profileUrl, label: homeScreenVM.userProfile?.username ?? homeScreenVM.username, size: 45.0, labelFontSize: .footnote)
+                        .clipShape(Circle())
+                }
             }
         }
     }
@@ -67,17 +65,6 @@ struct HomeScreen: View {
         .padding()
         .onReceive(homeScreenVM.$searchKeyword.debounce(for: 1, scheduler: RunLoop.main)) { _ in
             homeScreenVM.searchApplied()
-        }
-    }
-    
-    private func getModelContainer() -> ModelContainer {
-        let modelContainer : ModelContainer
-        
-        do {
-            modelContainer = try ModelContainer(for: PostUserLikeData.self)
-            return modelContainer
-        } catch {
-            fatalError("Could not initialize ModelContainer")
         }
     }
 }

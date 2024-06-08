@@ -20,7 +20,9 @@ struct NetworkResponseArray<T: Codable>: Codable {
     var data: [T]?
 }
 
-struct UserProfilModel: Codable {
+struct UserProfilModel: Codable, Identifiable, Hashable {
+   
+    var id: UUID = UUID()
     var username: String?
     var profileUrl: String?
     var posts: [PostModel]?
@@ -33,7 +35,7 @@ struct UserProfilModel: Codable {
 }
 
 
-struct PostModel: Codable {
+struct PostModel: Codable, Identifiable, Hashable {
     var id: String?
     var videoUrl: String?
     var thumbnailUrl: String?

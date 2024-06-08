@@ -10,6 +10,8 @@
 		C720F85B2C00462A001CB9F1 /* MockServerClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = C720F85A2C00462A001CB9F1 /* MockServerClient.swift */; };
 		C720F85F2C0058F1001CB9F1 /* NetworkClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = C720F85E2C0058F1001CB9F1 /* NetworkClient.swift */; };
 		C720F8642C005A68001CB9F1 /* FileManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C720F8632C005A68001CB9F1 /* FileManager.swift */; };
+		C792DD9E2C14AB8900927C83 /* NavigationModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C792DD9D2C14AB8900927C83 /* NavigationModel.swift */; };
+		C792DDA52C14B4EF00927C83 /* Router.swift in Sources */ = {isa = PBXBuildFile; fileRef = C792DDA42C14B4EF00927C83 /* Router.swift */; };
 		C79B6DF82C00EAB600FEE5BD /* PostModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C79B6DF72C00EAB600FEE5BD /* PostModel.swift */; };
 		C79B6DFB2C01F05500FEE5BD /* feed.json in Resources */ = {isa = PBXBuildFile; fileRef = C79B6DFA2C01F05500FEE5BD /* feed.json */; };
 		C79B6DFD2C01F75700FEE5BD /* profile_Rahul.json in Resources */ = {isa = PBXBuildFile; fileRef = C79B6DFC2C01F75700FEE5BD /* profile_Rahul.json */; };
@@ -38,6 +40,8 @@
 		C720F85A2C00462A001CB9F1 /* MockServerClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockServerClient.swift; sourceTree = "<group>"; };
 		C720F85E2C0058F1001CB9F1 /* NetworkClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkClient.swift; sourceTree = "<group>"; };
 		C720F8632C005A68001CB9F1 /* FileManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileManager.swift; sourceTree = "<group>"; };
+		C792DD9D2C14AB8900927C83 /* NavigationModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationModel.swift; sourceTree = "<group>"; };
+		C792DDA42C14B4EF00927C83 /* Router.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Router.swift; sourceTree = "<group>"; };
 		C79B6DF72C00EAB600FEE5BD /* PostModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostModel.swift; sourceTree = "<group>"; };
 		C79B6DFA2C01F05500FEE5BD /* feed.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = feed.json; sourceTree = "<group>"; };
 		C79B6DFC2C01F75700FEE5BD /* profile_Rahul.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = profile_Rahul.json; sourceTree = "<group>"; };
@@ -96,10 +100,10 @@
 				C79B6E002C01F9DD00FEE5BD /* SplashScreenView.swift */,
 				C7DB722B2BFEFC83001D94BA /* WelcomeScreen.swift */,
 				C79B6E072C020D5F00FEE5BD /* HomeScreen.swift */,
-				C79B6E172C02589900FEE5BD /* ProfileView.swift */,
 				C79B6E142C0247FF00FEE5BD /* CommonViews */,
 				C79B6E0C2C022C3800FEE5BD /* LoadingViews */,
 				C79B6E192C025EA400FEE5BD /* ChildViews */,
+				C792DDA42C14B4EF00927C83 /* Router.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -128,6 +132,30 @@
 				C720F8632C005A68001CB9F1 /* FileManager.swift */,
 			);
 			path = FileManager;
+			sourceTree = "<group>";
+		};
+		C792DD9C2C14AB7700927C83 /* Navigation */ = {
+			isa = PBXGroup;
+			children = (
+				C792DD9D2C14AB8900927C83 /* NavigationModel.swift */,
+			);
+			path = Navigation;
+			sourceTree = "<group>";
+		};
+		C792DD9F2C14B04300927C83 /* ProfileView */ = {
+			isa = PBXGroup;
+			children = (
+				C792DDA02C14B05400927C83 /* Views */,
+			);
+			path = ProfileView;
+			sourceTree = "<group>";
+		};
+		C792DDA02C14B05400927C83 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				C79B6E172C02589900FEE5BD /* ProfileView.swift */,
+			);
+			path = Views;
 			sourceTree = "<group>";
 		};
 		C79B6DF92C01F03A00FEE5BD /* Data */ = {
@@ -177,6 +205,7 @@
 		C79B6E192C025EA400FEE5BD /* ChildViews */ = {
 			isa = PBXGroup;
 			children = (
+				C792DD9F2C14B04300927C83 /* ProfileView */,
 				C79B6E1E2C02F19A00FEE5BD /* PostView */,
 				C79B6E1A2C025EFC00FEE5BD /* PostCardView.swift */,
 			);
@@ -234,6 +263,7 @@
 				C720F8592C00458C001CB9F1 /* Client */,
 				C720F85C2C00580E001CB9F1 /* Model */,
 				C79B6E022C02040400FEE5BD /* Utils */,
+				C792DD9C2C14AB7700927C83 /* Navigation */,
 				C7DB722D2BFEFC84001D94BA /* Assets.xcassets */,
 				C7DB722F2BFEFC84001D94BA /* Preview Content */,
 			);
@@ -338,8 +368,10 @@
 				C79B6E042C02041500FEE5BD /* ViewModifiers.swift in Sources */,
 				C79B6E0B2C0221E200FEE5BD /* HomeScreenVM.swift in Sources */,
 				C79B6E182C02589900FEE5BD /* ProfileView.swift in Sources */,
+				C792DD9E2C14AB8900927C83 /* NavigationModel.swift in Sources */,
 				C79B6E1B2C025EFC00FEE5BD /* PostCardView.swift in Sources */,
 				C79B6E1D2C02E6DA00FEE5BD /* PostView.swift in Sources */,
+				C792DDA52C14B4EF00927C83 /* Router.swift in Sources */,
 				C79B6E162C02480E00FEE5BD /* AppImage.swift in Sources */,
 				C79B6E132C02473400FEE5BD /* HelperFunctions.swift in Sources */,
 				C720F85B2C00462A001CB9F1 /* MockServerClient.swift in Sources */,
