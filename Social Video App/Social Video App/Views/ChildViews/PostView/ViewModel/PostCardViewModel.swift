@@ -15,12 +15,13 @@ final class PostCardViewModel : ObservableObject {
     @Published var post: PostModel? = nil
     @Published var isLikeButtonEnabled: Bool = false
     @Bindable var postUserLikeData: PostUserLikeData = PostUserLikeData()
+    private var apiTask: Task<Void, Never>?
     
     init(modelContext: ModelContext? = nil, postId: String, loggedInUsername: String) {
         self.modelContext = modelContext
         self.loggedInUsername = loggedInUsername
         fetchUserLikeData()
-        Task {
+        apiTask = Task {
             if await MockServerClient.shared.setupServerPostData(postId: postId) {
                 await loadPost(id: postId)
                 DispatchQueue.main.async {
@@ -28,6 +29,10 @@ final class PostCardViewModel : ObservableObject {
                 }
             }
         }
+    }
+    
+    deinit {
+        apiTask?.cancel()
     }
     
     func loadPost(id: String) async {
@@ -75,8 +80,9 @@ final class PostCardViewModel : ObservableObject {
             self.post?.likes = likes
             self.isLikeButtonEnabled = false
         }
-        Task {
-           await updatePost()
+        apiTask?.cancel()
+        apiTask = Task {
+            await updatePost()
         }
     }
     

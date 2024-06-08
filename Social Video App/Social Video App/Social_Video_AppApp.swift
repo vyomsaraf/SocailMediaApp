@@ -14,7 +14,8 @@ struct Social_Video_AppApp: App {
     var body: some Scene {
         WindowGroup {
             if isAppActive {
-                WelcomeScreen()
+                Router()
+                    .modelContainer(for: [PostUserLikeData.self])
             }else {
                 SplashScreen(isAppActive: $isAppActive)
             }
