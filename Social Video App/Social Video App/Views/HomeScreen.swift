@@ -11,8 +11,10 @@ import SwiftData
 
 struct HomeScreen: View {
     @StateObject var homeScreenVM: HomeScreenVM
+    @Binding var path : [NavigationModel]
     
-    init(username: String) {
+    init(username: String, path: Binding<[NavigationModel]>) {
+        _path = path
         _homeScreenVM = StateObject(wrappedValue: HomeScreenVM(username: username))
     }
     
@@ -22,7 +24,7 @@ struct HomeScreen: View {
             if let posts = homeScreenVM.posts, !posts.isEmpty {
                 VStack(alignment: .leading, spacing: 8.0) {
                     List(posts, id: \.id) { post in
-                        PostCardListItem(post: post, loggedInUsername: homeScreenVM.username)
+                        PostCardListItem(post: post, loggedInUsername: homeScreenVM.username, path: $path)
                         .listRowSeparator(.hidden)
                         .listRowBackground(Color.clear)
                         .listRowInsets(EdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 0) )
@@ -40,6 +42,8 @@ struct HomeScreen: View {
                     image: "emptyState")
             } else {
                 HomeScreenLoaderView()
+                    .accessibilityElement(children: .combine)
+                    .accessibilityLabel("Please wait. Loading Feeds")
             }
         }
         .modifier(AppNavigationTitleBar(title: "Home"))
@@ -49,6 +53,8 @@ struct HomeScreen: View {
                     AppImage(url: homeScreenVM.userProfile?.profileUrl, label: homeScreenVM.userProfile?.username ?? homeScreenVM.username, size: 45.0, labelFontSize: .footnote)
                         .clipShape(Circle())
                 }
+                .accessibilityLabel("Profile")
+                .accessibilityHint("View Profile")
             }
         }
     }
@@ -66,5 +72,9 @@ struct HomeScreen: View {
         .onReceive(homeScreenVM.$searchKeyword.debounce(for: 1, scheduler: RunLoop.main)) { _ in
             homeScreenVM.searchApplied()
         }
+        .accessibilityElement(children: .combine)
+        .accessibilityLabel("Search Bar")
+        .accessibilityValue(homeScreenVM.searchKeyword)
+        .accessibilityHint("Search Feeds based on username")
     }
 }

@@ -13,11 +13,13 @@ struct ProfileView: View {
     var userProfile: UserProfilModel? = nil
     @State var serverStatus: Bool
     @State var cardViewEnabled: Bool = false
+    @Binding var path : [NavigationModel]
     
-    init(username: String, userProfile: UserProfilModel? = nil) {
+    init(username: String, userProfile: UserProfilModel? = nil, path: Binding<[NavigationModel]>) {
         self.userName = username
         self.userProfile = userProfile
         _serverStatus = State(wrappedValue: MockServerClient.shared.isServerActive)
+        _path = path
     }
     
     var body: some View {
@@ -30,14 +32,17 @@ struct ProfileView: View {
                     .foregroundStyle(.primary, .white)
             }
             .padding(.horizontal)
+            .accessibilityElement(children: .combine)
             Divider()
             serverActionsView()
                 .padding(.horizontal)
             Divider()
             VStack(alignment: .leading, spacing: 16) {
+                Toggle(LocalizedStringKey(stringLiteral: "Card View"), isOn: $cardViewEnabled)
+                    .accessibilityValue(cardViewEnabled ? "ON" : "OFF")
+                    .accessibilityHint("Enable To view Card View of Posts")
                 Text("Posts (\(userProfile?.posts?.count ?? 0))")
                     .font(.headline)
-                Toggle(LocalizedStringKey(stringLiteral: "Card View"), isOn: $cardViewEnabled)
                 postsView()
             }
             .padding(.horizontal)
@@ -75,6 +80,8 @@ struct ProfileView: View {
             .buttonStyle(.borderedProminent)
             .frame(maxWidth: .infinity)
         }
+        .accessibilityElement(children: .contain)
+        .accessibilityHint("Server start and stop buttons")
     }
     
     @ViewBuilder
@@ -87,30 +94,35 @@ struct ProfileView: View {
             ScrollView(showsIndicators: false) {
                 LazyVGrid(columns: columns, spacing: 20) {
                     ForEach(posts, id: \.id) { post in
-                        if cardViewEnabled {
-                            PostCardListItem(post: post, widthRatio: 0.3, heightRatio: 0.1, loggedInUsername: userProfile?.username ?? userName)
-                        } else {
-                            if let videoUrlString = post.videoUrl, let videoUrl = URL(string: videoUrlString) {
-                                VStack {
-                                    VideoPlayer(player: AVPlayer(url: videoUrl)) {
-                                        VStack {
-                                            Spacer()
-                                            likesView(post: post)
+                        VStack {
+                            if cardViewEnabled {
+                                PostCardListItem(post: post, widthRatio: 0.3, heightRatio: 0.1, loggedInUsername: userProfile?.username ?? userName, path: $path)
+                            } else {
+                                if let videoUrlString = post.videoUrl, let videoUrl = URL(string: videoUrlString) {
+                                    VStack {
+                                        VideoPlayer(player: AVPlayer(url: videoUrl)) {
+                                            VStack {
+                                                Spacer()
+                                                likesView(post: post)
+                                            }
                                         }
+                                        .cornerRadius(8.0)
                                     }
-                                    .cornerRadius(8.0)
+                                    .frame(width: UIScreen.main.bounds.width * 0.35, height: UIScreen.main.bounds.height * 0.13)
+                                    .modifier(AppOverlay(v_Padding: 0.0, h_Padding: 0.0, cornerRadius: 8.0))
                                 }
-                                .frame(width: UIScreen.main.bounds.width * 0.35, height: UIScreen.main.bounds.height * 0.13)
-                                .modifier(AppOverlay(v_Padding: 0.0, h_Padding: 0.0, cornerRadius: 8.0))
                             }
                         }
+                        .accessibilityElement(children: .combine)
+                        .accessibilityLabel("Feed with likes \(post.likes ?? 0)")
+                        .accessibilityHint("Tap to view Feed detail")
                     }
                 }
             }
             .frame(maxWidth: .infinity)
         } else {
             ContentUnavailableView(
-                "No Posts Posted",
+                "No Feeds Posted",
                 image: "emptyState")
         }
     }

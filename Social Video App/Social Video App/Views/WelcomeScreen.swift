@@ -15,14 +15,21 @@ struct WelcomeScreen: View {
     
     var body: some View {
         VStack(spacing: 8.0) {
-            Text("Please enter your username")
-                .font(.headline)
-                .foregroundStyle(.secondary, .white)
-            TextField("username....", text: $username)
-                .foregroundColor(.primary)
-                .modifier(ClearButton(text: $username))
-                .modifier(AppOverlay(v_Padding: 8.0, cornerRadius: 8.0))
-                .padding()
+            
+            VStack(spacing: 8.0) {
+                Text("Please enter your username")
+                    .font(.headline)
+                    .foregroundStyle(.secondary, .white)
+                TextField("username....", text: $username)
+                    .foregroundColor(.primary)
+                    .modifier(ClearButton(text: $username))
+                    .modifier(AppOverlay(v_Padding: 8.0, cornerRadius: 8.0))
+                    .padding()
+            }
+            .accessibilityElement(children: .combine)
+            .accessibilityLabel("Please enter your username")
+            .accessibilityValue(username)
+            
             Button(action: {
                 UIApplication.shared.endEditing()
                 Task {

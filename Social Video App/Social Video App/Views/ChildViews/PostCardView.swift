@@ -14,15 +14,18 @@ struct PostCardListItem: View {
     var widthRatio: CGFloat = 0.7
     var heightRatio: CGFloat = 0.3
     var loggedInUsername: String
+    @Binding var path : [NavigationModel]
     
     var body: some View {
         PostCardView(post: post, widthRatio: widthRatio, heightRatio: heightRatio)
-            .background(
-                NavigationLink(value: NavigationModel(username: loggedInUsername, postId: post.id, navigationItem: .postDetail), label: { })
-                .opacity(0)
-            )
+            .onTapGesture {
+                path.append(NavigationModel(username: loggedInUsername, postId: post.id, navigationItem: .postDetail))
+            }
             .frame(maxWidth: .infinity)
             .padding()
+            .accessibilityElement(children: .combine)
+            .accessibilityLabel("Feed Item. Feed by \(post.username ?? "unknown"). Number of likes \(post.likes ?? 0)")
+            .accessibilityHint("Tap to view feed detail")
     }
 }
 
