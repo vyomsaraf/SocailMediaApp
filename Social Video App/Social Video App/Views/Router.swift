@@ -17,11 +17,11 @@ struct Router: View {
                 .navigationDestination(for: NavigationModel.self, destination: {navModel in
                     switch navModel.navigationItem {
                     case .home :
-                        HomeScreen(username: navModel.username)
+                        HomeScreen(username: navModel.username, path: $path)
                     case .postDetail :
                         PostView(postId: navModel.postId ?? "", loggedInUsername: navModel.username, modelContext: modelContext)
                     case .profile :
-                        ProfileView(username: navModel.username, userProfile: navModel.userProfile)
+                        ProfileView(username: navModel.username, userProfile: navModel.userProfile, path: $path)
                     }
                 })
         }

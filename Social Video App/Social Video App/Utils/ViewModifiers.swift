@@ -23,6 +23,7 @@ struct ClearButton: ViewModifier {
                         .foregroundColor(Color.primary.opacity(0.54))
                 }
                 .padding(.trailing, 8.0)
+                .accessibilityHint("Clear text")
             }
         }
     }
