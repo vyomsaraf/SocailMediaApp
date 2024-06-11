@@ -10,12 +10,12 @@ import Kingfisher
 import SwiftData
 
 struct HomeScreen: View {
-    @StateObject var homeScreenVM: HomeScreenVM
+    @State var homeScreenVM: HomeScreenVM
     @Binding var path : [NavigationModel]
     
     init(username: String, path: Binding<[NavigationModel]>) {
         _path = path
-        _homeScreenVM = StateObject(wrappedValue: HomeScreenVM(username: username))
+        _homeScreenVM = State(wrappedValue: HomeScreenVM(username: username))
     }
     
     var body: some View {
@@ -69,7 +69,7 @@ struct HomeScreen: View {
         .modifier(ClearButton(text: $homeScreenVM.searchKeyword, isSearchBar: true))
         .modifier(AppOverlay(v_Padding: 8.0, cornerRadius: 8.0))
         .padding()
-        .onReceive(homeScreenVM.$searchKeyword.debounce(for: 1, scheduler: RunLoop.main)) { _ in
+        .task(id: homeScreenVM.searchKeyword, priority: .background) {
             homeScreenVM.searchApplied()
         }
         .accessibilityElement(children: .combine)

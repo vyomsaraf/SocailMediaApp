@@ -8,12 +8,19 @@
 import Foundation
 import SwiftUI
 
-final class HomeScreenVM: ObservableObject {
-    @Published var posts: [PostModel]? = nil
-    @Published var searchKeyword: String = ""
-    @Published var userProfile: UserProfilModel? = nil
+@Observable
+final class HomeScreenVM {
+    var posts: [PostModel]? = nil
+    var searchKeyword: String = ""
+    var userProfile: UserProfilModel? = nil
+    
+    @ObservationIgnored
     var username: String
+    
+    @ObservationIgnored
     var originalData: [PostModel]? = nil
+    
+    @ObservationIgnored
     private var apiTask: Task<Void, Never>?
     
     init(username: String) {
