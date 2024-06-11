@@ -10,3 +10,4 @@ In this app, I have used SwiftUI, Swift 5.0, Swifter and AVkit as main component
 - App has a very basic UI and some server related bugs or issues.
 - App uses Navigation Stack and has taken navigation inspiration from WWDC 2022, navigation stack
 - App has basic accessibility support added especially for voice over using siri
+- Implements Obseravble Framework and macro
